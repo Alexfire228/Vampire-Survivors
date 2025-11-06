@@ -6,23 +6,39 @@ public class MapCreator : MonoBehaviour
 {
     [SerializeField] private GameObject[] chunkPrefabs;
 
+    private List<GameObject> chunkList = new List<GameObject>();
+
     public static MapCreator Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
-        Instance = this;
-        GenerateChunk(new Vector3(0, 0, 0));
+        GenerateChunk(transform.position);
     }
+
     private void GenerateChunk(Vector3 pos)
     {
         int random = Random.Range(0, chunkPrefabs.Length);
 
-        Instantiate(chunkPrefabs[random], pos, Quaternion.identity);
+        for (int i = 0; i < chunkList.Count; i++)
+        {
+            if (pos == chunkList[i].transform.position)
+            {
+                chunkList[i].SetActive(true);
+                return;
+            }
+        }
+
+        chunkList.Add(Instantiate(chunkPrefabs[random], pos, Quaternion.identity));
     }
 
     public void GenerateNeighborChunks(Vector3 pos)
     {
-        int random = Random.Range(0, chunkPrefabs.Length);
+        //DeleteUnnecesaryChunks();
 
         float chunkSize = 24;
         GenerateChunk(pos + new Vector3(chunkSize, chunkSize, 0));
@@ -32,5 +48,14 @@ public class MapCreator : MonoBehaviour
         GenerateChunk(pos + new Vector3(-24, chunkSize, 0));
         GenerateChunk(pos - new Vector3(chunkSize, 0, 0));
         GenerateChunk(pos - new Vector3(chunkSize, chunkSize, 0));
+        GenerateChunk(pos - new Vector3(0, chunkSize, 0));
+    }
+
+    public void DeleteUnnecesaryChunks()
+    {
+        for (int i = 0; i < chunkList.Count; i++)
+        {
+            chunkList[i].SetActive(false);
+        }
     }
 }

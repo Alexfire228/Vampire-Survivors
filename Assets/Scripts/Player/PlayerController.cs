@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     private Vector3 inputDir;
     private Rigidbody2D rgb;
@@ -32,5 +33,15 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         rgb.velocity = inputDir * xSpeed;
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+
+        if (!IsOwner)
+            return;
+
+        PlayerCamera.Instance.MoveCameraToPlayer(this.transform);
     }
 }
