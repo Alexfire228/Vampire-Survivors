@@ -9,4 +9,7 @@ public class EnemyStatsSO : ScriptableObject
     public float Speed;
     public float MaxHealth;
     public float Damage;
+    public float Mana;
+    public float ManaResSpeed;
+    public float SummonCost;
 }

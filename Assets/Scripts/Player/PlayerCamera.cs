@@ -14,7 +14,10 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        transform.position = linkToPlayer.position - new Vector3(0, 0, 10);
+        if (linkToPlayer != null)
+        {
+            transform.position = linkToPlayer.position - new Vector3(0, 0, 10);
+        }
     }
 
     public void MoveCameraToPlayer(Transform player)

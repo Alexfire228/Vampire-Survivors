@@ -59,7 +59,7 @@ public class MapCreator : MonoBehaviour
     {
         for (int i = 0; i < chunkList.Count; i++)
         {
-            if (Vector3.Distance(PlayerCamera.Instance.transform.position, chunkList[i].transform.position) > chunkSize * 1.5f)
+            if (Vector3.Distance(PlayerCamera.Instance.transform.position, chunkList[i].transform.position) > chunkSize * 2.5f)
                 chunkList[i].SetActive(false);
 
             else
