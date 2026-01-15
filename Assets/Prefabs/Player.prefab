@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xSpeed: 2.5
+  meteor: {fileID: 6926846462754002722, guid: 6b3889b182fee9c4a8408ad0f24c70ad, type: 3}
 --- !u!61 &5553820527985882127
 BoxCollider2D:
   m_ObjectHideFlags: 0

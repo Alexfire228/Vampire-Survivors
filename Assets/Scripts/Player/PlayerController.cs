@@ -9,8 +9,13 @@ public class PlayerController : NetworkBehaviour
     private Rigidbody2D rgb;
 
     [SerializeField] private float xSpeed;
+
+    [SerializeField] private GameObject meteor;
+
+    public static PlayerController Instance;
     void Start()
     {
+        Instance = this;
         rgb = GetComponent<Rigidbody2D>();
     }
 
@@ -18,6 +23,11 @@ public class PlayerController : NetworkBehaviour
     void Update()
     {
         CheckKeys();
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Instantiate(meteor);
+        }
     }
 
     void FixedUpdate()

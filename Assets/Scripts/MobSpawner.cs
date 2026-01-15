@@ -29,6 +29,7 @@ public class MobSpawner : NetworkBehaviour
     private Transform playerTransform;
 
     private List<NetworkObject> enemies = new List<NetworkObject>();
+    public List<NetworkObject> Enemies => enemies;
 
     public static MobSpawner Instance;
 
@@ -59,7 +60,6 @@ public class MobSpawner : NetworkBehaviour
             currWaveCost = 1;
             coins = 0;
             StartCoroutine(SpawnWave());
-            //PI();
         }
     }
 
