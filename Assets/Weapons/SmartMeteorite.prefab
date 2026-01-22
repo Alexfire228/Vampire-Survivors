@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3704793696760066252}
   - component: {fileID: -8605332134423073240}
   - component: {fileID: -6912059829600746936}
-  - component: {fileID: 7513132047899223309}
+  - component: {fileID: 1956813962132197990}
   m_Layer: 0
   m_Name: SmartMeteorite
   m_TagString: Untagged
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6926846462754002722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.6075358, y: 5.1180005, z: -6.7703304}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,7 +106,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7513132047899223309
+--- !u!114 &1956813962132197990
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,8 +115,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6926846462754002722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93a72f6d25e98de4d97a4d5d8ca618a7, type: 3}
+  m_Script: {fileID: 11500000, guid: f5bbd948f229a374abecdd9da077be98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanResolution: 5
-  deltaPoints: 2

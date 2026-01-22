@@ -8,4 +8,5 @@ public class WeaponStatsSO : ScriptableObject
     public float Damage;
     public float Cooldown;
     public float DestroyDelay;
+    public float FlyTime;
 }

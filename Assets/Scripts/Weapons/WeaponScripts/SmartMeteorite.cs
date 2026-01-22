@@ -2,6 +2,7 @@ using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class SmartMeteorite : PlayerWeapon
@@ -10,10 +11,18 @@ public class SmartMeteorite : PlayerWeapon
 
     [SerializeField] private int deltaPoints;
 
+    private Vector3[] spcoors;
+    private int[] spenemies;
+
     private float size;
+
+    private bool canStart;
+
+    [SerializeField] private GameObject meteorite;
+    [SerializeField] private WeaponStatsSO stats;
     public override void OnWeaponCDFinished()
     {
-        
+        canStart = true;
     }
 
     public override void OnWeaponDestroyed()
@@ -23,9 +32,11 @@ public class SmartMeteorite : PlayerWeapon
 
     private Vector3 FindBestPoint(string mode)
     {
-        Vector2 bestpoint = Vector2.zero;
+        Vector3 bestpoint = Vector3.zero;
         Vector3 scanpoint = Vector3.zero;
         int pointenemies = 0;
+        int enemiesrecord = 0;
+        
 
         size = deltaPoints * (scanResolution - 1);
         Vector3 leftdown = transform.position - new Vector3(size/2, size/2, 0);
@@ -52,16 +63,29 @@ public class SmartMeteorite : PlayerWeapon
                             }
                         }
 
+                        if (enemiesrecord < pointenemies)
+                        {
+                            enemiesrecord = pointenemies;
+                            bestpoint = scanpoint;
+                        }
+
+                        pointenemies = 0;
                         break;
                 }
             }
         }
+
+        
 
         return bestpoint;
     }
 
     void Update()
     {
-        transform.position = FindBestPoint("Max enemies");
+        if (canStart && Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            MeteoriteProjectile temp = Instantiate(meteorite, FindBestPoint("Max enemies") + new Vector3(0, 10, 0), Quaternion.identity).GetComponent<MeteoriteProjectile>();
+            temp.Setup(FindBestPoint("Max enemies"), stats);
+        }
     }
 }
