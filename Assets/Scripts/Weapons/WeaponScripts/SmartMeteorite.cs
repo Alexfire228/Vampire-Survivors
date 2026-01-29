@@ -2,6 +2,7 @@ using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using Unity.Netcode;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
@@ -84,8 +85,9 @@ public class SmartMeteorite : PlayerWeapon
     {
         if (canStart && Input.GetKeyDown(KeyCode.Alpha1))
         {
-            MeteoriteProjectile temp = Instantiate(meteorite, FindBestPoint("Max enemies") + new Vector3(0, 10, 0), Quaternion.identity).GetComponent<MeteoriteProjectile>();
-            temp.Setup(FindBestPoint("Max enemies"), stats);
+            GameObject temp = Instantiate(meteorite, new Vector3(10, 20, 0), Quaternion.identity);
+            temp.GetComponent<NetworkObject>().Spawn();
+            temp.GetComponent<MeteoriteProjectile>().Setup(FindBestPoint("Max enemies"), stats);
         }
     }
 }

@@ -34,4 +34,14 @@ public class EnemyStats : MonoBehaviour
         else
             return false;
     }
+
+    public void ChangeHP(float value)
+    {
+        if (hp - value <= 0)
+        {
+            Destroy(this);
+        }
+
+        hp -= value;
+    }
 }

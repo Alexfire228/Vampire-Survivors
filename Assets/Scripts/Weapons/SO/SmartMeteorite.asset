@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711edfb52d000384ea4bb524d739ef73, type: 3}
   m_Name: SmartMeteorite
   m_EditorClassIdentifier: 
-  Damage: 300
+  Damage: 0
   Cooldown: 10
   DestroyDelay: 60
   FlyTime: 0.6

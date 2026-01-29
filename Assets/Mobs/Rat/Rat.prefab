@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4644308387302953199}
   - component: {fileID: -6755000804764557161}
   - component: {fileID: 7195029889414657033}
+  - component: {fileID: 7027583363501701789}
   m_Layer: 0
   m_Name: Rat
   m_TagString: Untagged
@@ -137,3 +138,16 @@ CapsuleCollider2D:
   m_Offset: {x: 0.02139103, y: -0.047368176}
   m_Size: {x: 0.6990331, y: 0.36594698}
   m_Direction: 1
+--- !u!114 &7027583363501701789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728217373278630955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9eaaf3fb036ab24b8cf38f7cbd2426e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 39cc8fbc20748b24d8b8b316a0a14006, type: 2}
