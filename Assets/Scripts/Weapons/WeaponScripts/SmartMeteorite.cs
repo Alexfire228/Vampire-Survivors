@@ -20,7 +20,8 @@ public class SmartMeteorite : PlayerWeapon
     private bool canStart;
 
     [SerializeField] private GameObject meteorite;
-    [SerializeField] private WeaponStatsSO stats;
+    [SerializeField] private WeaponStatsSO meteorStats;
+    [SerializeField] private WeaponStatsSO explodeStats;
     public override void OnWeaponCDFinished()
     {
         canStart = true;
@@ -58,7 +59,7 @@ public class SmartMeteorite : PlayerWeapon
                     case "Max enemies":
                         for (int k = 0; k < MobSpawner.Instance.Enemies.Count; k++)
                         {
-                            if (Vector3.Distance(scanpoint, MobSpawner.Instance.Enemies[k].transform.position) <= 10)
+                            if (Vector3.Distance(scanpoint, MobSpawner.Instance.Enemies[k].transform.position) <= explodeStats.Radius)
                             {
                                 pointenemies++;
                             }
@@ -87,8 +88,13 @@ public class SmartMeteorite : PlayerWeapon
         {
             GameObject temp = Instantiate(meteorite, new Vector3(10, 20, 0), Quaternion.identity);
             temp.GetComponent<NetworkObject>().Spawn();
-            temp.GetComponent<MeteoriteProjectile>().Setup(FindBestPoint("Max enemies"), stats);
+            temp.GetComponent<MeteoriteProjectile>().Setup(FindBestPoint("Max enemies"), meteorStats, explodeStats);
             Debug.Log(FindBestPoint("Max enemies"));
+
+            if (explodeStats == null)
+            {
+                Debug.Log("Alert!");
+            }
         }
     }
 }

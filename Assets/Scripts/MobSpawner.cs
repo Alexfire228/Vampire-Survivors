@@ -96,10 +96,13 @@ public class MobSpawner : NetworkBehaviour
         float rmax = 15;
 
         Vector3 currdist = new Vector3(Random.Range(-15, 15), Random.Range(-15, 15), 0);
+        
 
         if (Vector3.Distance(pos + currdist, pos) > rmin && Vector3.Distance(pos + currdist, pos) < rmax)
         {
-            enemies.Add(Instantiate(enemyPrefab, pos + currdist, Quaternion.identity).GetComponent<NetworkObject>());
+            NetworkObject temp = Instantiate(enemyPrefab, pos + currdist, Quaternion.identity).GetComponent<NetworkObject>();
+            temp.Spawn();
+            enemies.Add(temp);
         }
 
         //Homework: рефакторинг кода, чтобы было через цикл, и выбиралась автоматически с помощью генератора случайных чисел (done)
@@ -108,6 +111,13 @@ public class MobSpawner : NetworkBehaviour
         //Debug.Log("S = " + Mathf.PI * (rmax * rmax));
 
 
+    }
+
+    public void DestroyEnemy(NetworkObject currEnemy)
+    {
+        enemies.Remove(currEnemy);
+        currEnemy.Despawn();
+        Destroy(currEnemy.gameObject);
     }
 
     private void PI()

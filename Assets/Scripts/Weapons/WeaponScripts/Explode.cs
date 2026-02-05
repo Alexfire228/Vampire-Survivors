@@ -5,21 +5,27 @@ using UnityEngine;
 
 public class Explode : NetworkBehaviour
 {
-    [SerializeField] private WeaponStatsSO stats;
+    private WeaponStatsSO stats;
 
     private float timer;
 
-    void Start()
+    public void Setup(WeaponStatsSO statsSO)
     {
         timer = 0;
+        stats = statsSO;
+
+        if (stats == null)
+        {
+            Debug.Log("Alert!");
+        }
 
         EnemyStats enemyStats = null;
         for (int i = 0; i < MobSpawner.Instance.Enemies.Count; i++)
         {
-            if (Vector3.Distance(transform.position, MobSpawner.Instance.Enemies[i].transform.position) <= 3)
-            {
-                enemyStats = MobSpawner.Instance.Enemies[i].GetComponent<EnemyStats>();
+            enemyStats = MobSpawner.Instance.Enemies[i].GetComponent<EnemyStats>();
 
+            if (Vector3.Distance(transform.position, MobSpawner.Instance.Enemies[i].transform.position) < stats.Radius && enemyStats != null)
+            {
                 enemyStats.ChangeHP(stats.Damage);
             }
         }

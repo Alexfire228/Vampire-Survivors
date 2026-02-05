@@ -16,3 +16,4 @@ MonoBehaviour:
   Cooldown: 10
   DestroyDelay: 60
   FlyTime: 0.6
+  Radius: 10

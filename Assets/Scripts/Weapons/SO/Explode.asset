@@ -16,3 +16,4 @@ MonoBehaviour:
   Cooldown: 0
   DestroyDelay: 0
   FlyTime: 0
+  Radius: 10

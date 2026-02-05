@@ -248,4 +248,5 @@ MonoBehaviour:
   scanResolution: 5
   deltaPoints: 2
   meteorite: {fileID: 6926846462754002722, guid: 6b3889b182fee9c4a8408ad0f24c70ad, type: 3}
-  stats: {fileID: 11400000, guid: 437a914856912ee4f8f324b0a836ea65, type: 2}
+  meteorStats: {fileID: 11400000, guid: 437a914856912ee4f8f324b0a836ea65, type: 2}
+  explodeStats: {fileID: 11400000, guid: 311b118212cf25648bff076e0989c94f, type: 2}
