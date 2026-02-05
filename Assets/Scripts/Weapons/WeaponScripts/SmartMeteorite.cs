@@ -48,7 +48,7 @@ public class SmartMeteorite : PlayerWeapon
             {
                 scanpoint = leftdown + new Vector3(i * deltaPoints, j * deltaPoints, 0);
 
-                if (Vector3.Distance(transform.position, scanpoint) > size/2) //Оптимизировать попробовать
+                if (Vector3.Distance(transform.position, scanpoint) > size/2f) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 {
                     continue;
                 }
@@ -58,7 +58,7 @@ public class SmartMeteorite : PlayerWeapon
                     case "Max enemies":
                         for (int k = 0; k < MobSpawner.Instance.Enemies.Count; k++)
                         {
-                            if (Vector3.Distance(scanpoint, MobSpawner.Instance.Enemies[k].transform.position) <= deltaPoints)
+                            if (Vector3.Distance(scanpoint, MobSpawner.Instance.Enemies[k].transform.position) <= 10)
                             {
                                 pointenemies++;
                             }
@@ -83,11 +83,12 @@ public class SmartMeteorite : PlayerWeapon
 
     void Update()
     {
-        if (canStart && Input.GetKeyDown(KeyCode.Alpha1))
+        if ( Input.GetKeyDown(KeyCode.Space))
         {
             GameObject temp = Instantiate(meteorite, new Vector3(10, 20, 0), Quaternion.identity);
             temp.GetComponent<NetworkObject>().Spawn();
             temp.GetComponent<MeteoriteProjectile>().Setup(FindBestPoint("Max enemies"), stats);
+            Debug.Log(FindBestPoint("Max enemies"));
         }
     }
 }

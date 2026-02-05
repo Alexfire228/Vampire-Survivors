@@ -15,7 +15,7 @@ public class MeteoriteProjectile : NetworkBehaviour
     [SerializeField] private GameObject explode;
     public void Setup(Vector3 currpoint, WeaponStatsSO statsSO)
     {
-        flyPoint = new Vector3(10,10,0);
+        flyPoint = currpoint;
         stats = statsSO;
         flyTime = 0f;
 
@@ -24,14 +24,7 @@ public class MeteoriteProjectile : NetworkBehaviour
 
     }
 
-    void Update()
-    {
-        if (Vector3.Distance(starterPoint, flyPoint) <= 0.1f)
-        {
-            Instantiate(explode, flyPoint, Quaternion.identity);
-            Destroy(this.gameObject);
-        }
-    }
+    
 
     IEnumerator Fly()
     {
@@ -41,5 +34,7 @@ public class MeteoriteProjectile : NetworkBehaviour
             yield return new WaitForEndOfFrame();
             flyTime += Time.deltaTime;
         }
+        Instantiate(explode, flyPoint, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 }
